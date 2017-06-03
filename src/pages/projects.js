@@ -25,6 +25,13 @@ export default class Projects extends Component {
         this.state = {
           loaded: true
         };
+        
+        //Get the lists of projects that this user is involved in.
+        var theUserId = firebase.auth().currentUser.uid;
+        
+        //Just get all the projects that this user has created for now.
+        //Go through the list of projects and filter on projectOwner
+        var listOfProjects = Firebase.database().ref('user-posts/' + myUserId).orderByChild('starCount');
 
     }
     
