@@ -9,10 +9,7 @@ import {
 
 import Button from '../components/button';
 import Header from '../components/header';
-
 import Firebase, { auth } from 'firebase';
-//import Login from './login';
-
 import styles from '../styles/common-styles.js';
 
 export default class signup extends Component {

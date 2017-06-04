@@ -17,7 +17,7 @@ import Firebase, { auth } from 'firebase';
 
 import styles from '../styles/common-styles.js';
 
-export default class Projects extends Component {
+export default class ProjectLanding extends Component {
 
     constructor(props) {
         super(props);
@@ -27,32 +27,28 @@ export default class Projects extends Component {
         };
     }
     
-    goBack() {
-      this.props.navigation.goBack();
-    }
-
     render() {
       const { navigate } = this.props.navigation;
       return (
         <View style={styles.container}>
-          <Header text="Projects" loaded={this.state.loaded} />
+          <Header text="Project - {{}}" loaded={this.state.loaded} />
           <View style={styles.body}>
           
             <Button
-              text="New Project ?"
-              onpress={() => navigate('ProjectName')}
+              text="Add Time ?"
+              onpress={() => navigate('LogTime')}
               button_styles={styles.primary_button}
               button_text_styles={styles.primary_button_text} />
           
             <Button
-              text="Existing Project"
-              onpress={() => navigate('ChooseExistingProject')}
+              text="View/Edit Time?"
+              onpress={() => navigate('ViewTime')}
               button_styles={styles.primary_button}
               button_text_styles={styles.primary_button_text} />
             
             <Button
               text="Return.."
-              onpress={this.goBack.bind(this)}
+              onpress={()=> { navigate.goBack() }}
               button_styles={styles.transparent_button}
               button_text_styles={styles.transparent_button_text} />
                             

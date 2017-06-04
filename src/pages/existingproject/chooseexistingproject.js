@@ -6,7 +6,9 @@ import {
   Text,
   TextInput,
   View,
-  AsyncStorage
+  AsyncStorage,
+  ListView,
+  TouchableHighlight,
 } from 'react-native';
 
 import Button from '../../components/button';
@@ -18,28 +20,59 @@ export default class ChooseExistingProject extends Component {
 
   constructor(props){
     super(props);
+    
+    var listSourceDS = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 });
       
     this.state = {
       loaded: false,
+      dataSource: listSourceDS
     }
   }
 
   componentWillMount(){
-    //Here we should preload a list of projects that the current user is regsitered with
-      //Get the current users uid.
-      var userID = Firebase.auth().currentUser.uid;
+    
+    var that = this;
+    
+    //Get the lists of projects that this user is involved in.
+    var theUserId = Firebase.auth().currentUser.uid;
+    
+    //Just get all the projects that this user has created for now.
+    //Go through the list of projects and filter on projectOwner
+    var listOfProjects = Firebase.database().ref('projects').orderByChild("projectOwner")
+    .startAt(theUserId)
+    .endAt(theUserId)
+    .once('value').then(function(snapshot) { 
+    
+      var listData = that.generateRows(snapshot);
+      
+      that.setState({dataSource : that.state.dataSource.cloneWithRows(listData)});
+    
+    });
 
-      //Get a list of projects back from firebase.
-      var listOfProjects = Firebase.database().ref('projects');
-
-      var aProject = listOfProjects.orderByChild('projectOwner').equalTo(userID);
-
-      aProject.once('value').then((snapshot) => {
-
-          console.log(snapshot.val());
-
-      });
-
+  }
+  
+  generateRows(snapshot) {
+  
+    var listViewData = [];
+    
+    let index = 0;
+    snapshot.forEach((aProject) => {
+      
+      var projectValues = aProject.val();
+      listViewData.push({ name: projectValues.name, description: projectValues.description, index: index, id: aProject.key });
+      index ++;
+      
+    });
+    
+    return listViewData;    
+  }
+  
+  _onProjectPressButton(rowData) {
+    //Now store the project uiID and navigate to the list of tasks for the project.
+    this.setState({projectID: rowData.id});
+    
+    //navigate('viewtasks',this.state)}
+    this.props.navigation.navigate('ProjectLanding',this.state);
   }
 
   render(){
@@ -49,13 +82,16 @@ export default class ChooseExistingProject extends Component {
         <Header text="Choose project..." loaded={this.state.loaded} />  
         <View style={styles.body}>
         {
-          this.state.user_email &&
             <View style={styles.body}>
-              <View style={page_styles.email_container}>
+              <View>
                 <Text style={page_styles.email_text}>Please select the project you want to record time for...</Text>
-                <ListView
-                  dataSource = { this.state.dataSource }
-                  renderRow = { (rowData) => <Text> { rowData} </Text> } />
+                <ListView style={{borderWidth: 1}}
+                     dataSource={this.state.dataSource}
+                     renderRow={(rowData) => 
+                       <TouchableHighlight onPress={()=>this._onProjectPressButton(rowData)}>
+                       <Text style={styles.listview_rowitem}>{`${rowData.name} - ${rowData.description}`}</Text>
+                       </TouchableHighlight>  }
+                   />
               </View>
               <Button
                   text="Ok"

@@ -21,6 +21,9 @@ import WhatIsProjectFor from './src/pages/newproject/whatisprojectfor';
 import ProjectAddUsers from  './src/pages/newproject/projectaddusers';
 import NewProjectCompleted from './src/pages/newproject/newprojectcompleted';
 import ChooseExistingProject from './src/pages/existingproject/chooseexistingproject';
+import ProjectLanding from './src/pages/projectlanding';
+import LogTime from './src/pages/logtime';
+import ViewTime from './src/pages/viewtime';
 import Button from './src/components/button';
 import commonstyles from './src/styles/common-styles.js';
 import Header from './src/components/header';
@@ -106,6 +109,9 @@ const timeKeeperApp = StackNavigator({
   WhatIsProjectFor: {screen: WhatIsProjectFor},
   ProjectAddUsers: {screen: ProjectAddUsers},
   NewProjectCompleted: {screen: NewProjectCompleted},
+  ViewTime: {screen: ViewTime},
+  LogTime: {screen: LogTime},
+  ProjectLanding: {screen: ProjectLanding},
 });
 
 AppRegistry.registerComponent('timeKeeper', () => timeKeeperApp);
