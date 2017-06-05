@@ -23,15 +23,22 @@ export default class ProjectLanding extends Component {
         super(props);
                 
         this.state = {
+          projectID: props.navigation.state.params.projectID,  
+          projectName: props.navigation.state.params.name,  
           loaded: true
         };
     }
     
+    goBack() {
+      this.props.navigation.goBack();
+    }
+
     render() {
       const { navigate } = this.props.navigation;
+      const { state } = this.state;
       return (
         <View style={styles.container}>
-          <Header text="Project - {{}}" loaded={this.state.loaded} />
+          <Header text={this.state.projectName}   loaded={this.state.loaded} />
           <View style={styles.body}>
           
             <Button
@@ -48,7 +55,7 @@ export default class ProjectLanding extends Component {
             
             <Button
               text="Return.."
-              onpress={()=> { navigate.goBack() }}
+              onpress={() =>  { this.goBack() }}
               button_styles={styles.transparent_button}
               button_text_styles={styles.transparent_button_text} />
                             

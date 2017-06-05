@@ -25,7 +25,9 @@ export default class ChooseExistingProject extends Component {
       
     this.state = {
       loaded: false,
-      dataSource: listSourceDS
+      dataSource: listSourceDS,
+      projectID: null,
+      projectName : null,
     }
   }
 
@@ -69,9 +71,13 @@ export default class ChooseExistingProject extends Component {
   
   _onProjectPressButton(rowData) {
     //Now store the project uiID and navigate to the list of tasks for the project.
+
+    this.state.projectID = rowData.id;
+    this.state.name = rowData.name;
+
     this.setState({projectID: rowData.id});
-    
-    //navigate('viewtasks',this.state)}
+    this.setState({projectName: rowData.name});
+
     this.props.navigation.navigate('ProjectLanding',this.state);
   }
 

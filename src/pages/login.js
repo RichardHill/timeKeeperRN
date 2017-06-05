@@ -11,13 +11,8 @@ import {
 
 import Button from '../components/button';
 import Header from '../components/header';
-
 import Firebase, { auth } from 'firebase';
-
 import Signup from './signup';
-//import Account from './account';
-//import Landing from './landing';
-//import Projects from './projects';
 
 import styles from '../styles/common-styles.js';
 

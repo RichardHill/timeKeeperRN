@@ -52,7 +52,7 @@ export default class Projects extends Component {
             
             <Button
               text="Return.."
-              onpress={this.goBack.bind(this)}
+              onpress={() =>  this.goBack() }
               button_styles={styles.transparent_button}
               button_text_styles={styles.transparent_button_text} />
                             

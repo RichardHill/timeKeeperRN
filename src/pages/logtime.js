@@ -16,6 +16,8 @@ import Header from '../components/header';
 import LogTime from './logtime';
 import ViewTine from './viewtime';
 
+import Firebase, { auth } from 'firebase';
+
 import styles from '../styles/common-styles.js';
 
 export default class logtime extends Component {
@@ -27,11 +29,7 @@ export default class logtime extends Component {
 
   constructor(props){
     super(props);
-    
-    console.log(props);
-    
-    this.fbDB = props.fbDB;
-        
+            
     this.state = {
       loaded: true,
       task: '',
@@ -39,6 +37,8 @@ export default class logtime extends Component {
       password: '',
       date: this.props.date,
       timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
+      userID: '',
+      projectID: props.navigation.state.params.projectID,  
     };
   }
   
@@ -84,15 +84,23 @@ export default class logtime extends Component {
     // });  
     
     //Store an id for the record.
-    var recordID = Math.floor((Math.random() * 10000000) + 1);
+    // var recordID = Math.floor((Math.random() * 10000000) + 1);
     
-    this.fbDB.database().ref('/employers/soverign/employees/'+ 'helenhill/'+ recordID ).set({
-      date: this.state.date.getDate() + '/' + (this.state.date.getMonth() + 1) + '/' +  this.state.date.getFullYear(),
-      duration_hours: this.state.hours,
-      duration_minutes: this.state.minutes,
-      task_description: this.state.task  
-    });
-        
+    // this.fbDB.database().ref('/employers/soverign/employees/'+ 'helenhill/'+ recordID ).set({
+    //   date: this.state.date.getDate() + '/' + (this.state.date.getMonth() + 1) + '/' +  this.state.date.getFullYear(),
+    //   duration_hours: this.state.hours,
+    //   duration_minutes: this.state.minutes,
+    //   task_description: this.state.task  
+    // });
+
+    var taskRef = Firebase.database().ref("projects/" + this.state.projectID + "/projectTasks");
+
+    taskRef.push({
+       date: this.state.date.getDate() + '/' + (this.state.date.getMonth() + 1) + '/' +  this.state.date.getFullYear(),
+       duration_hours: this.state.hours,
+       duration_minutes: this.state.minutes,
+       task_description: this.state.task,
+       user_id: this.state.userID });
   }
   
   render() {

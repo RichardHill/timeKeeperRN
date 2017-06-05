@@ -11,6 +11,7 @@ import {
 import Button from '../components/button';
 import Header from '../components/header';
 import LogTime from './logtime';
+import Firebase, { auth } from 'firebase';
 
 import styles from '../styles/common-styles.js';
 
@@ -18,11 +19,7 @@ export default class ViewTime extends Component {
 
   constructor(props){
     super(props);
-    
-    console.log(props);
-    
-    this.fbDB = props.fbDB;
-    
+        
     this.state = {
       loaded: true,
       email: '',
@@ -37,14 +34,30 @@ export default class ViewTime extends Component {
     //Go and get our data.
     const data = [];
     var that = this;
-    this.fbDB.database().ref('/employers/soverign/employees/' + 'helenhill').once('value').then(function(snapshot) {
-            
-      // Object.keys(listOfTimeEnteries).forEach(function(key) {
-      //     data.push(listOfTimeEnteries[key]);          
-      // });
-  
-      that.setState({dataSource : that.state.listViewSource.cloneWithRows(snapshot.val())});
+
+    //Get the current user Id.
+    var theUserId = Firebase.auth().currentUser.uid;
+
+    //Query the database for all tasks that this uses has logged.
+    var listOfTasks = Firebase.database().ref('projects').orderByChild("projectOwner")
+    .startAt(theUserId)
+    .endAt(theUserId)
+    .once('value').then(function(snapshot) { 
+    
+      var listData = that.generateRows(snapshot);
+      
+      that.setState({dataSource : that.state.dataSource.cloneWithRows(listData)});
+    
     });
+
+    // Firebase.ref('/employers/soverign/employees/' + 'helenhill').once('value').then(function(snapshot) {
+            
+    //   // Object.keys(listOfTimeEnteries).forEach(function(key) {
+    //   //     data.push(listOfTimeEnteries[key]);          
+    //   // });
+  
+    //   that.setState({dataSource : that.state.listViewSource.cloneWithRows(snapshot.val())});
+    // });
     
 }
   

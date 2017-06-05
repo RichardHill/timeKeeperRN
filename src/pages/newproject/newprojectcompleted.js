@@ -51,6 +51,7 @@ export default class NewProjectCompleted extends Component {
             description: this.state.projectDescription,
             users: this.state.projectMembers,
             projectOwner: user.uid,
+            projectTasks: null,
         };
         
         // Get a key for a new Project.
