@@ -24,8 +24,8 @@ export default class ViewTime extends Component {
       loaded: true,
       email: '',
       password: '',
-      listViewSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 }),
-      dataSource: null
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 }),
+      projectID: props.navigation.state.params.projectID, 
     };
   }
   
@@ -39,27 +39,29 @@ export default class ViewTime extends Component {
     var theUserId = Firebase.auth().currentUser.uid;
 
     //Query the database for all tasks that this uses has logged.
-    var listOfTasks = Firebase.database().ref('projects').orderByChild("projectOwner")
+    var listOfTasks = Firebase.database().ref('projects/' + this.state.projectID + '/projectTasks').orderByChild('user_id')
     .startAt(theUserId)
     .endAt(theUserId)
     .once('value').then(function(snapshot) { 
     
       var listData = that.generateRows(snapshot);
-      
       that.setState({dataSource : that.state.dataSource.cloneWithRows(listData)});
     
     });
-
-    // Firebase.ref('/employers/soverign/employees/' + 'helenhill').once('value').then(function(snapshot) {
-            
-    //   // Object.keys(listOfTimeEnteries).forEach(function(key) {
-    //   //     data.push(listOfTimeEnteries[key]);          
-    //   // });
-  
-    //   that.setState({dataSource : that.state.listViewSource.cloneWithRows(snapshot.val())});
-    // });
-    
+        
 }
+
+  generateRows(snapshot) {
+    
+    var listData = [];
+    
+    snapshot.forEach((aTask) => {
+      var theTask = aTask.val();
+      listData.push({ description : theTask.task_description, date: theTask.date, duration_hours: theTask.duration_hours, duration_mins: theTask.duration_minutes });
+    });
+    
+    return listData;
+  }
   
   viewtime(){
 
@@ -73,25 +75,24 @@ export default class ViewTime extends Component {
     
   }
   
+  goBack() {
+        this.props.navigation.goBack();
+  }
+  
   render() {
     
-    this.state.dataSource;
-    
-      if (this.state.dataSource === null) {
-          return <Text>Loading ...</Text>;
-      } else {
         return (<View style={styles.container}>
         <Header text="Time - Summary" loaded={this.state.loaded} />
         <View style={styles.body}>
         
         <ListView style={{borderWidth: 1}}
              dataSource={this.state.dataSource}
-             renderRow={(rowData) => <Text style={styles.listview_rowitem}>{`${rowData.date} - ${rowData.task_description.substring(0,30)} - ${rowData.duration_hours}hrs:${rowData.duration_minutes}mins`}</Text>}
+             renderRow={(rowData) => <Text style={styles.listview_rowitem}>{`${rowData.date} - ${rowData.description.substring(0,30)} - ${rowData.duration_hours}hrs:${rowData.duration_minutes}mins`}</Text>}
            />
             
         <Button
           text="Return.."
-          onpress={this.gotoLanding.bind(this)}
+          onpress={ () => { this.goBack()}}
           button_styles={styles.transparent_button}
           button_text_styles={styles.transparent_button_text} />
           
@@ -99,7 +100,16 @@ export default class ViewTime extends Component {
       </View>
     );
   }
-  }
 }
 
 AppRegistry.registerComponent('viewtime', () => viewtime);
+
+//JUNK CODE
+// Firebase.ref('/employers/soverign/employees/' + 'helenhill').once('value').then(function(snapshot) {
+        
+//   // Object.keys(listOfTimeEnteries).forEach(function(key) {
+//   //     data.push(listOfTimeEnteries[key]);          
+//   // });
+
+//   that.setState({dataSource : that.state.listViewSource.cloneWithRows(snapshot.val())});
+// });

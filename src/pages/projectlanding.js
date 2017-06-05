@@ -43,13 +43,13 @@ export default class ProjectLanding extends Component {
           
             <Button
               text="Add Time ?"
-              onpress={() => navigate('LogTime')}
+              onpress={() => navigate('LogTime',this.state)}
               button_styles={styles.primary_button}
               button_text_styles={styles.primary_button_text} />
           
             <Button
               text="View/Edit Time?"
-              onpress={() => navigate('ViewTime')}
+              onpress={() => navigate('ViewTime',this.state)}
               button_styles={styles.primary_button}
               button_text_styles={styles.primary_button_text} />
             

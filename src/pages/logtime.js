@@ -67,32 +67,9 @@ export default class logtime extends Component {
   
   submitTime() {
     
-    //var employeesRef = this.fbDB.database().ref('/employees/');
-    //var employeeRef = employeesRef.ref('richardhill@hotmail.com');
+    //Get the current user Id.
+    var theUserId = Firebase.auth().currentUser.uid;
     
-    // this.fbDB.database().ref('/').set({
-    //   id : recordID,
-    //   date: this.state.date,
-    //   duration_hours: this.state.hours,
-    //   duration_minutes: this.state.minutes,
-    //   task_description: this.state.task  
-    // });
-    
-    // this.fbDB.database().ref('/').set({
-    //     username: "test",
-    //     email: "richardhilHill@mail.com"
-    // });  
-    
-    //Store an id for the record.
-    // var recordID = Math.floor((Math.random() * 10000000) + 1);
-    
-    // this.fbDB.database().ref('/employers/soverign/employees/'+ 'helenhill/'+ recordID ).set({
-    //   date: this.state.date.getDate() + '/' + (this.state.date.getMonth() + 1) + '/' +  this.state.date.getFullYear(),
-    //   duration_hours: this.state.hours,
-    //   duration_minutes: this.state.minutes,
-    //   task_description: this.state.task  
-    // });
-
     var taskRef = Firebase.database().ref("projects/" + this.state.projectID + "/projectTasks");
 
     taskRef.push({
@@ -100,7 +77,7 @@ export default class logtime extends Component {
        duration_hours: this.state.hours,
        duration_minutes: this.state.minutes,
        task_description: this.state.task,
-       user_id: this.state.userID });
+       user_id: theUserId });
   }
   
   render() {
@@ -207,3 +184,30 @@ const page_styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('logtime', () => logtime);
+
+
+//Junk code    //var employeesRef = this.fbDB.database().ref('/employees/');
+    //var employeeRef = employeesRef.ref('richardhill@hotmail.com');
+    
+    // this.fbDB.database().ref('/').set({
+    //   id : recordID,
+    //   date: this.state.date,
+    //   duration_hours: this.state.hours,
+    //   duration_minutes: this.state.minutes,
+    //   task_description: this.state.task  
+    // });
+    
+    // this.fbDB.database().ref('/').set({
+    //     username: "test",
+    //     email: "richardhilHill@mail.com"
+    // });  
+    
+    //Store an id for the record.
+    // var recordID = Math.floor((Math.random() * 10000000) + 1);
+    
+    // this.fbDB.database().ref('/employers/soverign/employees/'+ 'helenhill/'+ recordID ).set({
+    //   date: this.state.date.getDate() + '/' + (this.state.date.getMonth() + 1) + '/' +  this.state.date.getFullYear(),
+    //   duration_hours: this.state.hours,
+    //   duration_minutes: this.state.minutes,
+    //   task_description: this.state.task  
+    // });
