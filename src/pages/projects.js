@@ -27,15 +27,16 @@ export default class Projects extends Component {
         };
     }
     
-    goBack() {
-      this.props.navigation.goBack();
-    }
+    static navigationOptions = {
+      title: "Projects",
+    };
+
 
     render() {
       const { navigate } = this.props.navigation;
       return (
         <View style={styles.container}>
-          <Header text="Projects" loaded={this.state.loaded} />
+  
           <View style={styles.body}>
           
             <Button
@@ -49,12 +50,6 @@ export default class Projects extends Component {
               onpress={() => navigate('ChooseExistingProject')}
               button_styles={styles.primary_button}
               button_text_styles={styles.primary_button_text} />
-            
-            <Button
-              text="Return.."
-              onpress={() =>  this.goBack() }
-              button_styles={styles.transparent_button}
-              button_text_styles={styles.transparent_button_text} />
                             
           </View>            
         </View>

@@ -28,13 +28,16 @@ export default class login extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: "Login",
+  };
+
   render(){
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Header text="Login" loaded={this.state.loaded} />
-        <View style={styles.body}>   
-        
+      
+        <View style={styles.body}>     
           <Text>Email</Text>
           <TextInput
             style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}

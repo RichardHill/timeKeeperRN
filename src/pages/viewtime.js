@@ -29,6 +29,10 @@ export default class ViewTime extends Component {
     };
   }
   
+  static navigationOptions = {
+    title: "View Time",
+  };
+  
   componentWillMount() {
     
     //Go and get our data.
@@ -82,7 +86,6 @@ export default class ViewTime extends Component {
   render() {
     
         return (<View style={styles.container}>
-        <Header text="Time - Summary" loaded={this.state.loaded} />
         <View style={styles.body}>
         
         <ListView style={{borderWidth: 1}}

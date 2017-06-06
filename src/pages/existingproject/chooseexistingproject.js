@@ -30,6 +30,10 @@ export default class ChooseExistingProject extends Component {
       projectName : null,
     }
   }
+  
+  static navigationOptions = {
+    title: "Choose Project",
+  };
 
   componentWillMount(){
     
@@ -85,7 +89,6 @@ export default class ChooseExistingProject extends Component {
 
     return (
       <View style={styles.container}>
-        <Header text="Choose project..." loaded={this.state.loaded} />  
         <View style={styles.body}>
         {
             <View style={styles.body}>
@@ -94,8 +97,8 @@ export default class ChooseExistingProject extends Component {
                 <ListView style={{borderWidth: 1}}
                      dataSource={this.state.dataSource}
                      renderRow={(rowData) => 
-                       <TouchableHighlight onPress={()=>this._onProjectPressButton(rowData)}>
-                       <Text style={styles.listview_rowitem}>{`${rowData.name} - ${rowData.description}`}</Text>
+                       <TouchableHighlight style={styles.listview_rowitem} onPress={()=>this._onProjectPressButton(rowData)}>
+                       <Text>{`${rowData.name} - ${rowData.description}`}</Text>
                        </TouchableHighlight>  }
                    />
               </View>

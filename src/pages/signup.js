@@ -24,6 +24,10 @@ export default class signup extends Component {
     };
   }
   
+  static navigationOptions = {
+    title: "Sign Up",
+  };
+  
   signup(){
 
     this.setState({
@@ -64,7 +68,7 @@ export default class signup extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Header text="Signup" loaded={this.state.loaded} />
+        
         <View style={styles.body}>
 
           <Text>Email</Text>

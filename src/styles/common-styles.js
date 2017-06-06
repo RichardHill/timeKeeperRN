@@ -46,7 +46,8 @@ module.exports = StyleSheet.create({
   },
   listview_rowitem: {
     backgroundColor: 'lightblue',
-    margin: 3,
-    fontSize: 14,
+    height: 40,
+    margin: 5,
+    padding: 5,
   },
 });

@@ -26,6 +26,10 @@ export default class logtime extends Component {
     date: new Date(),
     timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
   };
+  
+  static navigationOptions = {
+    title: "Log Time",
+  };
 
   constructor(props){
     super(props);
@@ -83,11 +87,8 @@ export default class logtime extends Component {
   render() {
     return (
       <View style={styles.container}>
-      
-        <Header text="Log Time" loaded={this.state.loaded} />
-        
-        <View style={{ flex: -1,
-            backgroundColor: '#F5FCFF'}}>
+  
+        <View style={{ flex: -1,backgroundColor: '#F5FCFF'}}>
           <Text>Date of Task</Text>
           <DatePickerIOS
             date={this.state.date}
@@ -157,10 +158,6 @@ export default class logtime extends Component {
                   button_styles={styles.primary_button}
                   button_text_styles={styles.primary_button_text} />
 
-                <Button
-                  text="Return.."
-                  button_styles={page_styles.btn_return_text}
-                  button_text_styles={styles.transparent_button_text} />
         </View>
         
       </View>

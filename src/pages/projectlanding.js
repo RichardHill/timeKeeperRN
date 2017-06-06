@@ -29,6 +29,10 @@ export default class ProjectLanding extends Component {
         };
     }
     
+    static navigationOptions = {
+      title: "Project Tasks",
+    };
+    
     goBack() {
       this.props.navigation.goBack();
     }
@@ -38,7 +42,7 @@ export default class ProjectLanding extends Component {
       const { state } = this.state;
       return (
         <View style={styles.container}>
-          <Header text={this.state.projectName}   loaded={this.state.loaded} />
+  
           <View style={styles.body}>
           
             <Button
@@ -52,12 +56,6 @@ export default class ProjectLanding extends Component {
               onpress={() => navigate('ViewTime',this.state)}
               button_styles={styles.primary_button}
               button_text_styles={styles.primary_button_text} />
-            
-            <Button
-              text="Return.."
-              onpress={() =>  { this.goBack() }}
-              button_styles={styles.transparent_button}
-              button_text_styles={styles.transparent_button_text} />
                             
           </View>            
         </View>
