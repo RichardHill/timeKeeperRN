@@ -5,7 +5,8 @@ import React, {
 
 module.exports = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'column',
   },
   body: {
     flex: 1,
@@ -14,8 +15,10 @@ module.exports = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   title: {
-    fontSize: 30,
-    color: 'black'
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
   },
   datePickerBody: {
     flex: 0,
@@ -37,9 +40,11 @@ module.exports = StyleSheet.create({
     fontSize: 16
   },
   buttonsContainer: {
-    flex: 0,
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    paddingBottom: 5,
   },
-  
   primary_button: {
     justifyContent: 'center',
     alignItems: 'center',
