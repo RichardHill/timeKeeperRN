@@ -33,17 +33,21 @@ module.exports = StyleSheet.create({
   },
   transparent_button: {
     marginTop: 10,
-    padding: 15
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   transparent_button_text: {
     color: '#0485A9',
-    fontSize: 16
+    fontSize: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonsContainer: {
     flex: 2,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    paddingBottom: 5,
+    paddingBottom: 10,
   },
   primary_button: {
     justifyContent: 'center',
@@ -69,10 +73,19 @@ module.exports = StyleSheet.create({
     width: 100,
     height: 100
   },
+  listview: {
+    backgroundColor: '#F5FCFF',
+    borderWidth: 1, 
+    borderColor:'skyblue', 
+    borderRadius:5, 
+    paddingBottom:5,
+    margin:2,
+  },
   listview_rowitem: {
     backgroundColor: 'lightblue',
     height: 40,
     margin: 5,
     padding: 5,
+    borderRadius: 5,
   },
 });

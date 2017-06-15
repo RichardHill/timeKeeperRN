@@ -61,11 +61,11 @@ class timeKeeper extends Component {
     const { navigate } = this.props.navigation;
           return (
             <View style={commonstyles.container}> 
-            <View style={{flex: 2,
-                flexDirection: 'column',
-                justifyContent: 'center'}}>
-              <Text style={commonstyles.title}>timeKeeper</Text> 
-            </View>
+              <View style={{flex: 2,
+                  flexDirection: 'column',
+                  justifyContent: 'center'}}>
+                <Text style={commonstyles.title}>timeKeeper</Text> 
+              </View>
               <View style={commonstyles.buttonsContainer}>
                 <Button
                    onpress={() => navigate('Login')}

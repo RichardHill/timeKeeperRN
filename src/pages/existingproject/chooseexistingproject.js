@@ -89,26 +89,13 @@ export default class ChooseExistingProject extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.body}>
-        {
-            <View style={styles.body}>
-              <View>
-                <Text style={page_styles.email_text}>Please select the project you want to record time for...</Text>
-                <ListView style={{borderWidth: 1}}
-                     dataSource={this.state.dataSource}
-                     renderRow={(rowData) => 
-                       <TouchableHighlight style={styles.listview_rowitem} onPress={()=>this._onProjectPressButton(rowData)}>
-                       <Text>{`${rowData.name} - ${rowData.description}`}</Text>
-                       </TouchableHighlight>  }
-                   />
-              </View>
-              <Button
-                  text="Ok"
-                  button_styles={styles.primary_button}
-                  button_text_styles={styles.primary_button_text} />
-            </View>
-        }
-        </View>
+            <ListView style={styles.listview}
+                 dataSource={this.state.dataSource}
+                 renderRow={(rowData) => 
+                   <TouchableHighlight style={styles.listview_rowitem} onPress={()=>this._onProjectPressButton(rowData)}>
+                   <Text>{`${rowData.name} - ${rowData.description}`}</Text>
+                   </TouchableHighlight>  }
+               />
       </View>
     );
   }  

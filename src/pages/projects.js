@@ -37,7 +37,7 @@ export default class Projects extends Component {
       return (
         <View style={styles.container}>
   
-          <View style={styles.body}>
+          <View style={styles.buttonsContainer}>
           
             <Button
               text="New Project ?"

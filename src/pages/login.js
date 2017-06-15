@@ -36,40 +36,47 @@ export default class login extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-      
-        <View style={styles.body}>     
         
-          <TextInput
-            style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}
-            autoCapitalize = 'none'
-            onChangeText={(text) => this.setState({email: text})}
-            value={this.state.email}
-            placeholder={"Email"}
-          />
-          
-          <TextInput
-            style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}
-            autoCapitalize = 'none'
-            secureTextEntry={true}
-            onChangeText={(text) => this.setState({password: text})}
-            value={this.state.password}
-            placeholder={"Password"}
-          />  
+        <View style={{flex: 2,
+            flexDirection: 'column',
+            justifyContent: 'center'}}>
+            
+            <Text style={{textAlign: 'center',fontSize:15, paddingBottom: 20}} >Please login...</Text>  
+                   
+            <TextInput
+              style={{height: 45,borderWidth: 1, borderRadius:5, margin: 10, paddingLeft: 5}}
+              autoCapitalize = 'none'
+              onChangeText={(text) => this.setState({email: text})}
+              value={this.state.email}
+              placeholder={"Email"}
+            />
+            
+            <TextInput
+              style={{height: 40,borderWidth: 1,borderRadius:5, margin: 10, paddingLeft: 5}}
+              autoCapitalize = 'none'
+              secureTextEntry={true}
+              onChangeText={(text) => this.setState({password: text})}
+              value={this.state.password}
+              placeholder={"Password"}
+            /> 
+            
+          </View> 
              
-          <View style={styles.buttonContainer}>
-          <Button
-            text="Login"
-            onpress={this.login.bind(this)}
-            button_styles={styles.primary_button}
-            button_text_styles={styles.primary_button_text} />
-        
+          <View style={styles.buttonsContainer}>
+          
           <Button
             text="New here?"
             onpress={() => navigate('Signup')}
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
+            
+            <Button
+              text="Login"
+              onpress={this.login.bind(this)}
+              button_styles={styles.primary_button}
+              button_text_styles={styles.primary_button_text} />
+          
           </View>
-        </View>
       </View>
     );
   }
