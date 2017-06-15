@@ -70,8 +70,6 @@ export default class signup extends Component {
       <View style={styles.container}>
         
         <View style={styles.body}>
-
-          <Text>Email</Text>
           <TextInput
             style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}
             autoCapitalize = 'none'
@@ -80,17 +78,18 @@ export default class signup extends Component {
             placeholder={"Email"}
           />
           
-          <Text>Password</Text>
           <TextInput
             style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}
             autoCapitalize = 'none'
             onChangeText={(text) => this.setState({password: text})}
             value={this.state.password}
             placeholder={"Password"}
+            secureTextEntry={true}
           />  
 
+          <Text>No account?</Text>
           <Button
-            text="Signup"
+            text="Register"
             onpress={this.signup.bind(this)}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />

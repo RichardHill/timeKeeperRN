@@ -85,8 +85,10 @@ export default class ViewTime extends Component {
   
   render() {
     
-        return (<View style={styles.container}>
-        <View style={styles.body}>
+        return (
+          
+        <View style={styles.container}>
+          <View style={styles.body}>
         
         <ListView style={{borderWidth: 1}}
              dataSource={this.state.dataSource}

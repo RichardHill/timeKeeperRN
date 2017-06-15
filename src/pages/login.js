@@ -38,7 +38,7 @@ export default class login extends Component {
       <View style={styles.container}>
       
         <View style={styles.body}>     
-          <Text>Email</Text>
+        
           <TextInput
             style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}
             autoCapitalize = 'none'
@@ -47,7 +47,6 @@ export default class login extends Component {
             placeholder={"Email"}
           />
           
-          <Text>Password</Text>
           <TextInput
             style={{height: 40,borderWidth: 1, margin: 10, paddingLeft: 5}}
             autoCapitalize = 'none'
@@ -57,6 +56,7 @@ export default class login extends Component {
             placeholder={"Password"}
           />  
              
+          <View style={styles.buttonContainer}>
           <Button
             text="Login"
             onpress={this.login.bind(this)}
@@ -68,6 +68,7 @@ export default class login extends Component {
             onpress={() => navigate('Signup')}
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
+          </View>
         </View>
       </View>
     );

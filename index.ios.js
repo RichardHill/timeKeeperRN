@@ -31,7 +31,7 @@ import Firebase from 'firebase';
 
 class timeKeeper extends Component {
 
-    constructor(props){
+    constructor(props) {
       super(props);
       
       const firebaseConfig = {
@@ -60,45 +60,31 @@ class timeKeeper extends Component {
   render() {
     const { navigate } = this.props.navigation;
           return (
-            <View style={styles.container}>
-              <Header text="Welcome to timeKeeper" loaded={this.state.loaded} />  
-              <Button
-                 onpress={() => navigate('Login')}
-                 text="Login..."
-                 button_styles={commonstyles.primary_button}
-                 button_text_styles={commonstyles.primary_button_text}
-                 />
-              <Button
-                 onpress={() => navigate('Signup')}
-                 text="Signup..."
-                 button_styles={commonstyles.primary_button}
-                 button_text_styles={commonstyles.primary_button_text}
-                 />
+            <View> 
+              <View style={commonstyles.buttonsContainer}>
+              <Text 
+                text="timeKeeper" 
+                loaded={this.state.loaded} 
+              /> 
+                <Button
+                   onpress={() => navigate('Login')}
+                   text="Login..."
+                   button_styles={commonstyles.primary_button}
+                   button_text_styles={commonstyles.primary_button_text}
+                   />
+                <Button
+                   onpress={() => navigate('Signup')}
+                   text="Signup..."
+                   button_styles={commonstyles.primary_button}
+                   button_text_styles={commonstyles.primary_button_text}
+                   />
+               </View>
             </View>
           );
         
       }
     }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
+    
 const timeKeeperApp = StackNavigator({
   Welcome: {screen: timeKeeper },
   Signup: { screen: Signup },

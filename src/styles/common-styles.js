@@ -5,12 +5,17 @@ import React, {
 
 module.exports = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   body: {
-    flex: 9,
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  title: {
+    fontSize: 30,
+    color: 'black'
   },
   datePickerBody: {
     flex: 0,
@@ -31,10 +36,25 @@ module.exports = StyleSheet.create({
     color: '#0485A9',
     fontSize: 16
   },
+  buttonsContainer: {
+    flex: 0,
+  },
+  
   primary_button: {
-    margin: 10,
-    padding: 15,
-    backgroundColor: '#529ecc'
+    justifyContent: 'center',
+    alignItems: 'center',
+    height:70,
+    marginRight:5,
+    marginLeft:5,
+    marginTop:10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom:10,
+    backgroundColor:'#68a0cf',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff',
   },
   primary_button_text: {
     color: '#FFF',
